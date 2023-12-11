@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+DEFAULT_IMG_URL = 'https://tinyurl.com/demo-cupcake'
 
 def connect_db(app):
     """Connect to database."""
@@ -42,13 +43,11 @@ class Cupcake(db.Model):
     image_url = db.Column(
         db.String(500),
         nullable=False,
-        default='https://tinyurl.com/demo-cupcake',
-        # TODO: better for this to be a global constant at top of file
+        default=DEFAULT_IMG_URL,
     )
 
     def __repr__(self):
-        return f"<{self.__class__.__name__} cupcake.id={self.id}>"
-        # TODO: repr should have ID instead of cupcake.id
+        return f"<{self.__class__.__name__} id={self.id}>"
 
     def serialize(self):
         """Serialize to dictionary."""
@@ -59,5 +58,4 @@ class Cupcake(db.Model):
             "size": self.size,
             "rating":self.rating,
             "image_url":self.image_url,
-        # TODO: indent by one
         }
