@@ -43,18 +43,21 @@ class Cupcake(db.Model):
         db.String(500),
         nullable=False,
         default='https://tinyurl.com/demo-cupcake',
+        # TODO: better for this to be a global constant at top of file
     )
 
     def __repr__(self):
         return f"<{self.__class__.__name__} cupcake.id={self.id}>"
+        # TODO: repr should have ID instead of cupcake.id
 
     def serialize(self):
         """Serialize to dictionary."""
 
         return {
-        "id": self.id,
-        "flavor": self.flavor,
-        "size": self.size,
-        "rating":self.rating,
-        "image_url":self.image_url,
+            "id": self.id,
+            "flavor": self.flavor,
+            "size": self.size,
+            "rating":self.rating,
+            "image_url":self.image_url,
+        # TODO: indent by one
         }

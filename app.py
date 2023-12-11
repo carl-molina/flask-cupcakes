@@ -55,6 +55,8 @@ def create_cupcake():
     size = request.json["size"]
     rating = request.json["rating"]
     image_url = request.json["image_url"]
+    # TODO: ^ consider doing a get request here if empty string, return None
+    # handling for when image_url is optional and there's a default in Model
 
     print('This is flavor', flavor)
 
