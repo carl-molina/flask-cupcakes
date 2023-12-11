@@ -25,6 +25,12 @@ app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 # debug = DebugToolbarExtension(app)
 
 
+@app.get("/")
+def show_homepage():
+    """ Show the homepage """
+
+    return render_template("base.html")
+
 @app.get('/api/cupcakes')
 def show_all_cupcakes():
     """ Get data about all cupcakes.
