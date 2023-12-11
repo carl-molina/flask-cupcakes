@@ -27,7 +27,9 @@ app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 
 @app.get('/api/cupcakes')
 def show_all_cupcakes():
-    """Return JSON {'cupcakes': [{id, flavor, size, rating, image_url}, ...]}
+    """ Get data about all cupcakes.
+
+        Return JSON {'cupcakes': [{id, flavor, size, rating, image_url}, ...]}
     """
 
     cupcakes = Cupcake.query.all()
@@ -37,7 +39,9 @@ def show_all_cupcakes():
 
 @app.get('/api/cupcakes/<int:cupcake_id>')
 def show_cupcake(cupcake_id):
-    """Return JSON {'cupcakes': [{id, flavor, size, rating, image_url}, ...]}
+    """ Get data about a single cupcake.
+
+        Return JSON {'cupcakes': [{id, flavor, size, rating, image_url}, ...]}
     """
 
     cupcake = Cupcake.query.get_or_404(cupcake_id)
@@ -47,40 +51,22 @@ def show_cupcake(cupcake_id):
 
 @app.post('/api/cupcakes')
 def create_cupcake():
-    """Create a single cupcake instance; responds with JSON:
+    """ Create a single cupcake instance; responds with JSON:
+
         Returns JSON {cupcake: {id, flavor, size, rating, image_url}}
     """
 
-    flavor = request.json["flavor"]
-    size = request.json["size"]
-    rating = request.json["rating"]
-    image_url = request.json["image_url"]
-    # TODO: ^ consider doing a get request here if empty string, return None
-    # handling for when image_url is optional and there's a default in Model
-
-    print('This is flavor', flavor)
+    data = request.json
 
     new_cupcake = Cupcake(
-        flavor=flavor,
-        size=size,
-        rating=rating,
-        image_url=image_url,
+        flavor=data["flavor"],
+        size=data["size"],
+        rating=data["rating"],
+        image_url=data.get("image_url", None)
     )
 
     db.session.add(new_cupcake)
     db.session.commit()
-
-    # data = request.json
-
-    # new_cupcake = Cupcake(
-    #     flavor=data["flavor"],
-    #     size=data["size"],
-    #     rating=data["rating"],
-    #     image_url=data["image_url"],
-    # )
-
-    # db.session.add(new_cupcake)
-    # db.session.commit()
 
     serialized = new_cupcake.serialize()
 
