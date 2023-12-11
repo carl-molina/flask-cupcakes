@@ -5,7 +5,7 @@ import os
 from flask import Flask, redirect, render_template, flash, jsonify, request
 # from flask_debugtoolbar import DebugToolbarExtension
 
-from models import db, connect_db, Cupcake
+from models import db, connect_db, Cupcake, DEFAULT_IMG_URL
 
 app = Flask(__name__)
 
@@ -59,11 +59,14 @@ def create_cupcake():
 
     data = request.json
 
+    if "image_url" in data:
+        image_url_check = data["image_url"] or DEFAULT_IMG_URL
+
     new_cupcake = Cupcake(
         flavor=data["flavor"],
         size=data["size"],
         rating=data["rating"],
-        image_url=data.get("image_url", None)
+        image_url=image_url_check
     )
 
     db.session.add(new_cupcake)
@@ -93,13 +96,13 @@ def edit_cupcake(cupcake_id):
     cupcake.flavor = data.get("flavor", cupcake.flavor)
     cupcake.size = data.get("size", cupcake.size)
     cupcake.rating = data.get("rating", cupcake.rating)
-    cupcake.image_url = data.get("image_url", cupcake.image_url)
-    # TODO: check if img_url is in data; if not, set it to default img
+
+    if "image_url" in data:
+        cupcake.image_url = data["image_url"] or DEFAULT_IMG_URL
 
     db.session.commit()
 
     serialized = cupcake.serialize()
-    # TODO: might not need variable here, just pass in return statement
 
     return jsonify(cupcake=serialized)
 
