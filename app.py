@@ -72,3 +72,39 @@ def create_cupcake():
 
     # Return w/status code 201 --- return tuple (json, status)
     return (jsonify(cupcake=serialized), 201)
+
+@app.patch("/api/cupcakes/<int:cupcake_id>")
+def edit_cupcake(cupcake_id):
+    """ Update a cupcake using the id passed in the URL and the cupcake data.
+
+        Accepts:
+            {cupcake:
+                id,
+                flavor,
+                size,
+                rating,
+                image_url
+            }
+
+        Returns JSON
+            {cupcake:
+                id,
+                flavor,
+                size,
+                rating,
+                image_url
+            }
+
+    """
+    data = request.json
+
+    cupcake = Cupcake.query.get_or_404(cupcake_id)
+
+    cupcake.flavor = data.get("flavor", cupcake.flavor)
+    cupcake.size = data.get("size", cupcake.size)
+    cupcake.rating = data.get("rating", cupcake.rating)
+    cupcake.image_url = data.get("image_url", cupcake.image_url)
+
+    serialized = cupcake.serialize()
+
+    return jsonify(cupcake=serialized)
