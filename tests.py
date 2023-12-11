@@ -126,6 +126,7 @@ class CupcakeViewsTestCase(TestCase):
                     "image_url": "http://test.com/cupcake2.jpg"
                 }
             })
+            # TODO: can test for query count in case anything was counted wrong
 
 
     def test_invalid_edit_cupcake(self):
@@ -134,7 +135,9 @@ class CupcakeViewsTestCase(TestCase):
         with app.test_client() as client:
             url = f"/api/cupcakes/99999999"
             resp = client.patch(url, json=CUPCAKE_DATA_2)
+            # JSON changes content/header to JSON ^ with this
             self.assertEqual(resp.status_code, 404)
+            # TODO: can test if you don't pass in json w/ 415 status_code
 
 
     def test_delete_cupcake(self):
@@ -143,6 +146,7 @@ class CupcakeViewsTestCase(TestCase):
         with app.test_client() as client:
             url = f"/api/cupcakes/{self.cupcake_id}"
             resp = client.delete(url, json=CUPCAKE_DATA_2)
+            # TODO: on delete request, ^ no need to pass in json
 
             self.assertEqual(resp.status_code, 200)
 
@@ -158,4 +162,5 @@ class CupcakeViewsTestCase(TestCase):
         with app.test_client() as client:
             url = f"/api/cupcakes/99999999"
             resp = client.delete(url, json=CUPCAKE_DATA_2)
+            # TODO: don't need to pass in json on delete request
             self.assertEqual(resp.status_code, 404)

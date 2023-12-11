@@ -94,10 +94,12 @@ def edit_cupcake(cupcake_id):
     cupcake.size = data.get("size", cupcake.size)
     cupcake.rating = data.get("rating", cupcake.rating)
     cupcake.image_url = data.get("image_url", cupcake.image_url)
+    # TODO: check if img_url is in data; if not, set it to default img
 
     db.session.commit()
 
     serialized = cupcake.serialize()
+    # TODO: might not need variable here, just pass in return statement
 
     return jsonify(cupcake=serialized)
 
