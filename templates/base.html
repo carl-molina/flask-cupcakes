@@ -57,11 +57,12 @@
               type="text"
               class="form-control"
               id="cupcake-flavor"
+              name="flavor"
               placeholder="Flavor of Cupcake">
           </div>
           <div class="form-group">
             <label for="cupcake-size" class="form-label mt-4">Size of Cupcake</label>
-            <select class="form-select" id="cupcake-size">
+            <select class="form-select" id="cupcake-size" name="size">
               <option selected disabled>Select a size</option>
               <option>Small</option>
               <option>Medium</option>
@@ -71,7 +72,7 @@
           </div>
           <div class="form-group">
             <label for="cupcake-rating" class="form-label mt-4">Cupcake Rating</label>
-            <select class="form-select" id="cupcake-rating">
+            <select class="form-select" id="cupcake-rating" name="rating">
               <option selected disabled>Give it a rating</option>
               <option>1</option>
               <option>2</option>
@@ -91,11 +92,12 @@
               type="url"
               class="form-control"
               id="cupcake-image"
+              name="image"
               placeholder="Cupcake Image URL">
           </div>
           <br>
           <div>
-            <button class="btn btn-primary">SUBMIT</button>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
           </div>
       </form>
     </div>

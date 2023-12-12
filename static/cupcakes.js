@@ -107,7 +107,6 @@ async function submitNewCupcake(evt) {
   const cupcakeData = await formData.json();
 
   const newCupcake = generateCupcakeHTML(cupcakeData.cupcake);
-
   $cupcakeList.append(newCupcake);
 }
 
