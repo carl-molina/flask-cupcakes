@@ -31,16 +31,29 @@ async function getCupcakes() {
 
 function generateCupcakeHTML(cupcake) {
   console.debug("generateCupcakeHTML ran!");
+
   return `
-    <div class="list-group" id=${cupcake.id}>
-      <a
-        href="${BASE_URL}/${cupcake.id}"
-        class="list-group-item list-group-item-action list-group-item-primary"
-      >
-        ${cupcake.flavor} - Rating: ${cupcake.rating}
-      </a>
-    </div>
+    <div class="card" style="width: 18rem;">
+      <img src="${cupcake.image_url}" class="card-img-top" alt="Image of a cupcake">
+        <div class="card-body">
+          <h5 class="card-title">Flavor: ${cupcake.flavor}</h5>
+          <p class="card-text">Rating: ${cupcake.rating}</p>
+          <p class="card-text">Size: ${cupcake.size}</p>
+        </div>
+      </div>
   `;
+
+
+  // return `
+  //   <div class="list-group" id=${cupcake.id}>
+  //     <a
+  //       href="${BASE_URL}/${cupcake.id}"
+  //       class="list-group-item list-group-item-action list-group-item-primary"
+  //     >
+  //       ${cupcake.flavor} - Rating: ${cupcake.rating}
+  //     </a>
+  //   </div>
+  // `;
 }
 
 
@@ -77,7 +90,7 @@ async function submitNewCupcake(evt) {
   const formData = await fetch('/api/cupcakes', {
     method: "POST",
     body: JSON.stringify({
-      flavor,rating,size,image_url,
+      flavor, rating, size, image_url,
     }),
     headers: {
       "content-type": "application/json"
@@ -88,7 +101,7 @@ async function submitNewCupcake(evt) {
 
   const newCupcake = generateCupcakeHTML(cupcakeData.cupcake);
 
-  $cupcakeList.append(newCupcake)
+  $cupcakeList.append(newCupcake);
 }
 
 $cupcakeForm.on("submit", submitNewCupcake);
