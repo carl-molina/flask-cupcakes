@@ -24,9 +24,9 @@ async function getCupcakes() {
 
 
 /**
- *
+ * Generate the HTML for a cupcake card
  * @param {object} cupcake - A singular cupcake object
- * @returns HTML markup for each cupcake list element
+ * @returns HTML markup for each cupcake
  */
 
 function generateCupcakeHTML(cupcake) {
