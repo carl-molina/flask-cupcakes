@@ -12,24 +12,24 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-secondary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sweet Cupcakes</a>
+        <a class="navbar-brand" href="/">Sweet Cupcakes</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav me-auto">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link active" href="/">Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Cupcakes Ratings</a>
+              <a class="nav-link" href="#cupcake-list-container">Cupcakes Ratings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rate a cupcake</a>
+              <a class="nav-link" href="#new-cupcake-form">Rate a cupcake</a>
             </li>
           </ul>
         </div>
@@ -38,15 +38,12 @@
   </header>
   <main>
     <div class="container">
-      <h2 class="my-3 "> Here's the cupcakes we have!</h2>
+      <h2 class="my-3"> Here's the cupcakes we have!</h2>
     </div>
-    <div id="cupcake-list-container" class="container">
-<!-- TODO: use jQuery to get a list of all the cupcakes and display with above styling -->
+    <div class="container">
+      <div id="cupcake-list-container" class="row row-cols-2 row-cols-lg-4 g-3">
+          <!-- Cupcake List Here -->
       </div>
-    </div>
-
-    <div id="cupcake-details" class="container invisible">
-      <!-- TODO: show cupcakes details on click -->
     </div>
 
     <div id="new-cupcake-form" class="container my-3">

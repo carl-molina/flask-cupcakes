@@ -33,14 +33,21 @@ function generateCupcakeHTML(cupcake) {
   console.debug("generateCupcakeHTML ran!");
 
   return `
-    <div class="card" style="width: 18rem;">
-      <img src="${cupcake.image_url}" class="card-img-top" alt="Image of a cupcake">
+    <div class="col">
+    <div class="card h-100 text-bg-secondary gx-0" style="max-width: 18rem">
+      <img
+        src="${cupcake.image_url}"
+        class="card-img-top"
+        style="height: 16rem"
+        alt="${cupcake.image_url} Image"
+      >
         <div class="card-body">
-          <h5 class="card-title">Flavor: ${cupcake.flavor}</h5>
+          <h5 class="card-title">${cupcake.flavor}</h5>
           <p class="card-text">Rating: ${cupcake.rating}</p>
           <p class="card-text">Size: ${cupcake.size}</p>
         </div>
       </div>
+    </div>
   `;
 
 
