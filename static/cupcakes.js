@@ -1,4 +1,4 @@
-// TODO: function jQuery objects
+d;// TODO: function jQuery objects
 
 // TODO: Create HTML for each cupcake
 // TODO: Get list of cupcakes from API
@@ -23,20 +23,16 @@ async function getCupcakes() {
 }
 
 function generateCupcakeHTML(cupcake) {
-
-  return $(`
-  <a href="${cupcape.id}>
-  <li id="${cupcake.id}">
-    ${showDeleteBtn ? getDeleteBtnHTML() : ""}
-    ${showStar ? getStarHTML(story, currentUser) : ""}
-    <a href="${story.url}" target="a_blank" class="story-link">
-      ${story.title}
-    </a>
-    <small class="story-hostname">(${hostName})</small>
-    <small class="story-author">by ${story.author}</small>
-    <small class="story-user">posted by ${story.username}</small>
-  </li>
-`);
+  return `
+    <div class="list-group" id=${cupcake.id}>
+      <a
+        href="${BASE_URL}${cupcake.id}"
+        class="list-group-item list-group-item-action list-group-item-primary"
+      >
+        ${cupcake.flavor} - Rating: ${cupcake.rating}
+      </a>
+    </div>
+  `;
 }
 
 
