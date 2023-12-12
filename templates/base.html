@@ -45,25 +45,25 @@
       </div>
     </div>
 
-    <div id="cupcake_details" class="container invisible">
+    <div id="cupcake-details" class="container invisible">
       <!-- TODO: show cupcakes details on click -->
     </div>
 
-    <div id="new_cupcake_form" class="container my-3">
-      <form>
+    <div id="new-cupcake-form" class="container my-3">
+      <form method="POST">
         <fieldset>
           <legend>Add a Cupcake Here!</legend>
           <div class="form-group">
-            <label for="cupcake_flavor" class="form-label mt-4">Cupcake Flavor</label>
+            <label for="cupcake-flavor" class="form-label mt-4">Cupcake Flavor</label>
             <input
               type="text"
               class="form-control"
-              id="cupcake_flavor"
+              id="cupcake-flavor"
               placeholder="Flavor of Cupcake">
           </div>
           <div class="form-group">
-            <label for="cupcake_size" class="form-label mt-4">Size of Cupcake</label>
-            <select class="form-select" id="cupcake_size">
+            <label for="cupcake-size" class="form-label mt-4">Size of Cupcake</label>
+            <select class="form-select" id="cupcake-size">
               <option>Small</option>
               <option>Medium</option>
               <option>Large</option>
@@ -71,8 +71,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="cupcake_rating" class="form-label mt-4">Cupcake Rating</label>
-            <select class="form-select" id="cupcake_rating">
+            <label for="cupcake-rating" class="form-label mt-4">Cupcake Rating</label>
+            <select class="form-select" id="cupcake-rating">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -86,12 +86,16 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="cupcake_image" class="form-label mt-4">Cupcake Image</label>
+            <label for="cupcake-image" class="form-label mt-4">Cupcake Image</label>
             <input
               type="url"
               class="form-control"
-              id="cupcake_image"
+              id="cupcake-image"
               placeholder="Cupcake Image URL">
+          </div>
+          <br>
+          <div>
+            <button class="btn btn-primary">SUBMIT</button>
           </div>
       </form>
     </div>

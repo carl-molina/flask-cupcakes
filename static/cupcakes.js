@@ -2,7 +2,7 @@
 
 const BASE_URL = '/api/cupcakes';
 
-const $cupcakeForm = $("#new_cupcake_form");
+const $cupcakeForm = $("#new-cupcake-form");
 const $cupcakeList = $("#cupcake-list-container");
 
 /**
@@ -12,7 +12,7 @@ const $cupcakeList = $("#cupcake-list-container");
 
 async function getCupcakes() {
   console.debug('getCupcakes ran!');
-  const resp = await fetch("api/cupcakes");
+  const resp = await fetch(BASE_URL);
 
   const cupcakeData = await resp.json();
 
@@ -55,15 +55,45 @@ function putCupcakesOnPage(cupcakes) {
   console.debug("putCupcakesOnPage ran!");
   // $cupcakeList.empty();
 
-  for (let cupcake of cupcakes) {
-    let $cupcake = generateCupcakeHTML(cupcake);
+  for (let cupcakeData of cupcakes) {
+    let cupcake = generateCupcakeHTML(cupcakeData);
     // flavor = cupcake.flavor;
     // size = cupcake.size;
     // rating = cupcake.rating;
     // image_url = cupcake.image_url;
-    $cupcakeList.append($cupcake);
+    $cupcakeList.append(cupcake);
   }
 }
+
+async function submitNewCupcake(evt) {
+  console.debug('submitNewCupcake');
+  evt.preventDefault();
+
+  const flavor = $("#cupcake-flavor").val();
+  const size = $("#cupcake-size").val();
+  const rating = $("#cupcake-rating").val();
+  const image_url = $("#cupcake-image").val();
+
+  const formData = await fetch('/api/cupcakes', {
+    method: "POST",
+    body: JSON.stringify({
+      flavor,rating,size,image_url,
+    }),
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+
+  const cupcakeData = await formData.json();
+
+  const newCupcake = generateCupcakeHTML(cupcakeData.cupcake);
+
+  $cupcakeList.append(newCupcake)
+}
+
+$cupcakeForm.on("submit", submitNewCupcake);
+
+
 
 /**
  * Starter helper function
